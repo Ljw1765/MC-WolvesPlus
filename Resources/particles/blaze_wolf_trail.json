@@ -1,0 +1,68 @@
+{
+  "format_version": "1.10.0",
+  "particle_effect": {
+    "description": {
+      "identifier": "ljw:blaze_wolf_trail",
+      "basic_render_parameters": {
+          "material": "particles_alpha",
+          "texture": "textures/particle/flame"
+      }
+    },
+    "components": {
+	  // emitter local space components
+      "minecraft:emitter_local_space": {
+        "position": true,
+        "rotation": true
+      },
+		
+	  // emission rate components
+	  "minecraft:emitter_rate_steady": {
+        "spawn_rate": 1,
+		"max_particles": 1
+      },
+		
+      // emission lifetime components
+	  "minecraft:emitter_lifetime_expression": {
+        "activation_expression": 1,
+        "expiration_expression": 0
+      },
+		
+		"minecraft:particle_expire_if_in_blocks": [
+			// expire if in water
+			"minecraft:water",
+			"minecraft:flowing_water",
+			"minecraft:bubble_column"
+		],
+	  
+      // emission shape components, or the shape of the effect as defined
+      // by particle emission position and directions
+      "minecraft:emitter_shape_sphere": {
+        "radius": 0.025,
+        "direction": [ 0, 0, 0 ]
+      },
+
+      // components that control initial state of particles
+      "minecraft:particle_initial_speed": "Math.random(0, 1)",
+	  
+      // components that affect particle lifetime
+      "minecraft:particle_lifetime_expression": {
+        "max_lifetime": "Math.random(2.5, 3.0)"
+      },
+
+      // components that control/direct motion of particles
+      "minecraft:particle_motion_dynamic": {
+        "linear_acceleration": [ 0, 0, 0 ],
+        "linear_drag_coefficient": 0.0
+      },
+		
+      // components that affect how the particle is drawn
+      "minecraft:particle_appearance_billboard": {
+        "size": [
+          "((0.1 + variable.particle_random_1*0.1) - (0.1 * (variable.particle_age / 3.0))) * variable.entity_scale",
+          "((0.1 + variable.particle_random_1*0.1) - (0.1 * (variable.particle_age / 3.0))) * variable.entity_scale"
+        ],
+        "facing_camera_mode": "lookat_y"
+      }
+    }
+  }
+}

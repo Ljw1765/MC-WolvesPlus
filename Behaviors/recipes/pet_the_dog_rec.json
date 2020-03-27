@@ -1,0 +1,27 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+    "identifier": "ljw:pet_the_dog"
+    },
+
+    
+    "tags": [ "crafting_table" ],
+    "pattern": [
+      "0I0",
+      "0F0",
+      "0I0"
+    ],
+    "key": {
+      "I": {
+        "item": "minecraft:bone"
+      },
+	  "F": {
+        "item": "ljw:wolf_treat"
+      }
+    },
+    "result": {
+      "item": "ljw:pet_the_dog"
+    }
+  }
+}

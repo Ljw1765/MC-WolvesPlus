@@ -1,0 +1,37 @@
+{
+	"format_version": "1.8.0",
+	"render_controllers": {
+    "controller.render.ljw_wolf_multiskin": {
+			"arrays": {
+				"textures": {
+					"Array.default_skins": 	[ 	
+												"Texture.dex",
+												"Texture.choco_sprinkle",
+												"Texture.orange",
+												"Texture.white",
+												"Texture.painted",
+												"Texture.emerald",
+												"Texture.husky"
+											],
+					"Array.tamed_skins": 	[ 	
+												"Texture.dex_tamed",
+												"Texture.choco_sprinkle_tamed",
+												"Texture.orange_tamed",
+												"Texture.white_tamed",
+												"Texture.painted_tamed",
+												"Texture.emerald_tamed",
+												"Texture.husky_tamed"
+											]
+				}
+			},
+			"geometry": "Geometry.default",
+			"materials": [ 
+				{ "*": "query.variant != 4 ? Material.default : Material.collar" }, 
+				{ "upperBody": "query.variant != 5 ? Material.collar : Material.default" } 
+			],
+			"textures": [ 
+				"query.is_tamed ? Array.tamed_skins[query.variant] : Array.default_skins[query.variant]"
+			]
+		}
+	}
+}

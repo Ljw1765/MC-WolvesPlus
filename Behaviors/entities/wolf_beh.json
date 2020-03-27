@@ -1,0 +1,1292 @@
+{
+	"format_version": "1.8.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "minecraft:wolf",
+			"is_spawnable": true,
+			"is_summonable": true,
+			"is_experimental": false
+		},
+		
+		"component_groups": {
+			"minecraft:wolf_baby": {
+				"minecraft:is_baby": {
+				},
+				
+				"minecraft:scale": {
+					"value":0.5
+				},
+			
+				"minecraft:ageable": {
+					"duration": 1200,
+					"feedItems": [
+						"chicken",
+						"cooked_chicken",
+						"beef",
+						"cooked_beef",
+						"muttonRaw",
+						"muttonCooked",
+						"porkchop",
+						"cooked_porkchop",
+						"rabbit",
+						"cooked_rabbit",
+						"rotten_flesh"
+					],
+					"grow_up": {
+						"event": "minecraft:ageable_grow_up",
+						"target": "self"
+					}
+				}
+			},
+
+			"minecraft:wolf_adult": {
+				"minecraft:loot": {
+					"table": "loot_tables/entities/wolf.json"
+				},
+				"minecraft:breedable": {
+					"requireTame": true,
+					"breedsWith": {
+						"mateType": "minecraft:wolf",
+						"babyType": "minecraft:wolf",
+						"breed_event": {
+							"event": "minecraft:entity_born",
+							"target": "baby"
+						}
+					},
+					"breedItems": [
+						"chicken",
+						"cooked_chicken",
+						"beef",
+						"cooked_beef",
+						"muttonRaw",
+						"muttonCooked",
+						"porkchop",
+						"cooked_porkchop",
+						"rabbit",
+						"cooked_rabbit",
+						"rotten_flesh"
+					]
+				},
+		
+				"minecraft:health": {
+					"value": 20,
+					"max": 20
+				},
+				
+				"minecraft:attack": {
+					"damage": 4
+				},
+				
+				"minecraft:movement": {
+					"value": 0.3
+				},
+				
+				"minecraft:collision_box": {
+					"width": 0.6,
+					"height": 0.8
+				}
+			},
+			
+			"minecraft:wolf_angry": {
+				"minecraft:angry": {
+					"duration": 25,
+					"broadcastAnger": true,
+					"broadcastRange": 20,
+					"calm_event": {
+						"event": "minecraft:on_calm",
+						"target": "self"
+					}
+				},
+				"minecraft:on_target_acquired": {
+				}
+			},
+			
+			"minecraft:wolf_angry_tamed": {
+				"minecraft:angry": {
+					"duration": 60,
+					"calm_event": {
+						"event": "minecraft:on_calm_tamed",
+						"target": "self"
+					}
+				},
+				"minecraft:on_target_escape": {
+					"event": "minecraft:on_calm_tamed",
+					"target": "self"
+				},
+				"minecraft:behavior.look_at_target": {
+					"priority": 6,
+					"target_distance": 25.0,
+					"probability": 1,
+					"look_time": [25,25]
+				}
+			},
+			
+			"minecraft:wolf_calm_tamed": {
+				"minecraft:ambient_sound_interval": {
+					"event_name": "ambient"
+				},
+				"minecraft:behavior.look_at_player": {
+					"priority": 6,
+					"target_distance": 6.0,
+					"probability": 0.02
+				}
+			},
+			
+			"minecraft:wolf_wild": {
+				"minecraft:tameable": {
+					"probability": 0.33,
+					"tameItems": "bone",
+					"tame_event": {
+						"event": "minecraft:on_tame",
+						"target": "self"
+					}
+				},
+				"minecraft:behavior.look_at_player": {
+					"priority": 6,
+					"target_distance": 6.0,
+					"probability": 0.02
+				},
+				"minecraft:behavior.nearest_attackable_target": {
+					"priority": 4,
+					"attack_interval": 10,
+					"entity_types": [
+						{
+							"filters": { "other_with_families": [ "skeleton", "rabbit" ] },
+							"max_dist": 16
+						}
+					],
+					"must_see": true
+				},
+				"minecraft:on_target_acquired": {
+					"event": "minecraft:become_angry",
+					"target": "self"
+				},
+				"minecraft:rideable": {
+					"seat_count": 1,
+					"family_types": [
+						"zombie"
+					],
+					"seats": {
+						"position": [0.0, 0.675, -0.1]
+					}
+				},
+				"minecraft:interact": [
+					{
+						//If this pack wasn't loaded at world creation
+						"on_interact": {
+							"filters": {
+								"all_of": [
+									{ "test": "is_family", "subject": "other", "operator": "==", "value": "player" },
+									{ "test": "has_component", "subject": "self", "operator": "!=", "value": "minecraft:navigation.generic" }
+								]
+							},
+							"event": "minecraft:upgrade_wolf_wild",
+							"target": "self"
+						},
+						"interact_text": "Enable Wolves+"
+					}
+				]
+			},
+			
+			"minecraft:wolf_following": {
+				"minecraft:shareables": {
+				},
+				"minecraft:behavior.follow_owner": {
+					"priority": 3,
+					"speed_multiplier": 1.0,
+					"start_distance": 10,
+					"stop_distance": 2
+				}
+			},
+			
+			"minecraft:wolf_tame": {
+				"minecraft:is_tamed": {
+				},
+				"minecraft:health": {
+					"value": 20,
+					"max": 20
+				},
+				"minecraft:color": {
+					"value": 14
+				},
+				"minecraft:behavior.tempt": {
+					"priority": 6,
+					"speed_multiplier": 1.25,
+					"items": [
+						"ljw:wolf_treat"
+					]
+				},
+				"minecraft:behavior.breed": {
+					"priority": 4
+				},
+				"minecraft:behavior.owner_hurt_by_target": {
+					"priority": 5
+				},
+				"minecraft:behavior.owner_hurt_target": {
+					"priority": 5
+				},
+				"minecraft:behavior.nearest_attackable_target": {
+					"priority": 5,
+					"attack_interval": 10,
+					"entity_types": [
+						{
+							"filters": { "test": "is_family", "subject": "other", "operator": "==", "value": "skeleton" },
+							"max_dist": 16
+						}
+					],
+					"must_see": true
+				},
+				"minecraft:is_dyeable": {
+					"interact_text": "Dye"
+				},
+				"minecraft:leashable": {
+					"soft_distance": 4.0,
+					"hard_distance": 6.0,
+					"max_distance": 10.0,
+					"on_leash": {
+						"event": "minecraft:on_leash",
+						"target": "self"
+					},
+					"on_unleash": {
+						"event": "minecraft:on_unleash",
+						"target": "self"
+					}
+				},
+				"minecraft:interact": [
+					{
+						"on_interact": {
+							"filters": {
+								"all_of": [
+									{ "test": "has_equipment", "subject": "other", "domain": "hand", "operator": "==", "value": "ljw:wolf_treat_mini" },
+									{ "test": "is_owner", "subject": "other", "operator": "==", "value": true },
+									{ "test": "has_component", "value": "minecraft:is_tamed" },
+									{ "test": "has_component", "value": "minecraft:breedable" },
+									{ "test": "has_component", "subject": "self", "operator": "!=", "value": "minecraft:is_baby" }
+								]
+							},
+							"event": "minecraft:on_shrink",
+							"target": "self"
+						},
+						"use_item": true,
+						"play_sounds": "eat",
+						"interact_text": "Feed"
+					},
+					//If made giant while NOT sitting
+					{
+						"on_interact": {
+							"filters": {
+								"all_of": [
+									{ "test": "has_equipment", "subject": "other", "domain": "hand", "operator": "==", "value": "ljw:wolf_treat_giant" },
+									{ "test": "is_owner", "subject": "other", "operator": "==", "value": true },
+									{ "test": "has_component", "value": "minecraft:is_tamed" },
+									{ "test": "has_component", "value": "minecraft:breedable" },
+									{ "test": "has_component", "operator": "not", "value": "minecraft:flying_speed" },
+									{ "test": "has_component", "subject": "self", "operator": "!=", "value": "minecraft:is_baby" }
+								]
+							},
+							"event": "minecraft:on_giant",
+							"target": "self"
+						},
+						"use_item": true,
+						"play_sounds": "eat",
+						"interact_text": "Feed"
+					},
+					//If made giant while sitting
+					{
+						"on_interact": {
+							"filters": {
+								"all_of": [
+									{ "test": "has_equipment", "subject": "other", "domain": "hand", "operator": "==", "value": "ljw:wolf_treat_giant" },
+									{ "test": "is_owner", "subject": "other", "operator": "==", "value": true },
+									{ "test": "has_component", "value": "minecraft:is_tamed" },
+									{ "test": "has_component", "value": "minecraft:breedable" },
+									{ "test": "has_component", "value": "minecraft:flying_speed" },
+									{ "test": "has_component", "subject": "self", "operator": "!=", "value": "minecraft:is_baby" }
+								]
+							},
+							"event": "minecraft:on_giant_while_sitting",
+							"target": "self"
+						},
+						"use_item": true,
+						"play_sounds": "eat",
+						"interact_text": "Feed"
+					},
+					{
+						"on_interact": {
+							"filters": {
+								"all_of": [
+									{ "test": "has_equipment", "subject": "other", "domain": "hand", "operator": "==", "value": "ljw:wolf_treat_fallproof" },
+									{ "test": "is_owner", "subject": "other", "operator": "==", "value": true },
+									{ "test": "has_component", "value": "minecraft:is_tamed" },
+									{ "test": "has_component", "operator": "!=", "value": "minecraft:fall_damage" }
+								]
+							},
+							"event": "minecraft:make_fallproof",
+							"target": "self"
+						},
+						"use_item": true,
+						"play_sounds": "eat",
+						"interact_text": "Give Fall Immunity"
+					},
+					{
+						"on_interact": {
+							"filters": {
+								"all_of": [
+									{ "test": "has_equipment", "subject": "other", "domain": "hand", "operator": "==", "value": "ljw:wolf_treat_waterbreathing" },
+									{ "test": "is_owner", "subject": "other", "operator": "==", "value": true },
+									{ "test": "has_component", "operator": "==", "value": "minecraft:is_tamed" },
+									{ "test": "has_component", "subject": "self", "operator": "!=", "value": "minecraft:is_charged" }
+								]
+							},
+							"event": "minecraft:make_waterbreathing",
+							"target": "self"
+						},
+						"use_item": true,
+						"play_sounds": "eat",
+						"interact_text": "Give Water Breathing"
+					},
+					{
+						"on_interact": {
+							"filters": {
+								"all_of": [
+									{ "test": "has_equipment", "subject": "other", "domain": "hand", "operator": "==", "value": "ljw:wolf_treat_teleporting" },
+									{ "test": "is_owner", "subject": "other", "operator": "==", "value": true },
+									{ "test": "has_component", "value": "minecraft:is_tamed" },
+									{ "test": "has_component", "subject": "self", "operator": "!=", "value": "minecraft:teleport" },
+									{ "test": "has_component", "operator": "not", "value": "minecraft:flying_speed" },
+									{ "test": "has_component", "subject": "self", "operator": "!=", "value": "minecraft:is_baby" }
+								]
+							},
+							"event": "minecraft:make_teleporting",
+							"target": "self"
+						},
+						"use_item": true,
+						"play_sounds": "eat",
+						"interact_text": "Feed?"
+					},
+					{
+						"on_interact": {
+							"filters": {
+								"all_of": [
+									{ "test": "has_equipment", "subject": "other", "domain": "hand", "operator": "==", "value": "ljw:wolf_treat_resetsize" },
+									{ "test": "is_owner", "subject": "other", "operator": "==", "value": true },
+									{ "test": "has_component", "value": "minecraft:is_tamed" },
+									{ "test": "has_component", "subject": "self", "operator": "!=", "value": "minecraft:breedable" },
+									{ "test": "has_component", "subject": "self", "operator": "!=", "value": "minecraft:is_baby" }
+								]
+							},
+							"event": "minecraft:on_restore_size",
+							"target": "self"
+						},
+						"use_item": true,
+						"play_sounds": "eat",
+						"interact_text": "Restore to Normal Size"
+					},
+					{
+						"on_interact": {
+							"filters": {
+								"all_of": [
+									{ "test": "is_owner", "subject": "other", "operator": "==", "value": true },
+									{ "test": "has_component", "value": "minecraft:is_tamed" },
+									{ "test": "has_component", "value": "minecraft:is_charged" },
+									{ "test": "has_component", "subject": "self", "operator": "!=", "value": "minecraft:behavior.random_swim" },
+									{ "test": "in_water", "value": true }
+								]
+							},
+							"event": "minecraft:enable_swimming",
+							"target": "self"
+						},
+						"interact_text": "Dive!"
+					},
+					{
+						"on_interact": {
+							"filters": {
+								"all_of": [
+									{ "test": "has_equipment", "subject": "other", "domain": "hand", "operator": "==", "value": "bone" },
+									{ "test": "is_owner", "subject": "other", "operator": "==", "value": true },
+									{ "test": "has_component", "value": "minecraft:is_tamed" },
+									{ "test": "has_component", "value": "minecraft:shareables" },
+									{ "test": "has_component", "subject": "self", "operator": "!=", "value": "minecraft:is_baby" }
+								]
+							},
+							"event": "minecraft:stop_following",
+							"target": "self"
+						},
+						"use_item": false,
+						"interact_text": "Stop Following Me"
+					},
+					{
+						"on_interact": {
+							"filters": {
+								"all_of": [
+									{ "test": "has_equipment", "subject": "other", "domain": "hand", "operator": "==", "value": "bone" },
+									{ "test": "is_owner", "subject": "other", "operator": "==", "value": true },
+									{ "test": "has_component", "value": "minecraft:is_tamed" },
+									{ "test": "has_component", "operator": "not", "value": "minecraft:shareables" },
+									{ "test": "has_component", "subject": "self", "operator": "!=", "value": "minecraft:is_baby" }
+								]
+							},
+							"event": "minecraft:start_following",
+							"target": "self"
+						},
+						"use_item": false,
+						"interact_text": "Follow Me"
+					},
+					{
+						"on_interact": {
+							"filters": {
+								"all_of": [
+									{ "test": "has_equipment", "subject": "other", "domain": "hand", "operator": "==", "value": "ljw:pet_the_dog" },
+									{ "test": "has_component", "subject": "self", "operator": "!=", "value": "minecraft:is_saddled" },
+									{ "test": "has_component", "value": "minecraft:is_tamed" }
+								]
+							},
+							"event": "minecraft:start_pet_the_dog",
+							"target": "self"
+						},
+						"use_item": false,
+						"interact_text": "Pet"
+					},
+					{
+						//If this pack wasn't loaded at world creation
+						"on_interact": {
+							"filters": {
+								"all_of": [
+									{ "test": "is_family", "subject": "other", "operator": "==", "value": "player" },
+									{ "test": "has_component", "subject": "self", "operator": "!=", "value": "minecraft:navigation.generic" }
+								]
+							},
+							"event": "minecraft:upgrade_wolf_tamed",
+							"target": "self"
+						},
+						"interact_text": "Enable Wolves+"
+					}
+				]
+			},
+			
+			"minecraft:wolf_pet": {
+				"minecraft:is_saddled": {
+				},
+				"minecraft:timer": {
+					"looping": false,
+					"time": 2,
+					"time_down_event": {
+						"event": "minecraft:end_pet_the_dog"
+					}
+				}
+			},
+			
+			"minecraft:wolf_teleporting": {
+				"minecraft:teleport": {
+				"randomTeleports": true,
+				"maxRandomTeleportTime": 30,
+				"randomTeleportCube": [ 10, 10, 10 ],
+				"targetDistance": 16,
+				"target_teleport_chance": 0.05,
+				"lightTeleportChance": 0.05
+				}
+			},
+			
+			"minecraft:wolf_leashed": {
+				"minecraft:behavior.move_towards_restriction": {
+					"priority": 2,
+					"speed_multiplier": 1.0
+				}
+			},
+		
+			"minecraft:wolf_waterbreathing": {
+				"minecraft:breathable": {
+					"breathesWater": true
+				},
+				"minecraft:is_charged": {
+				}
+			},
+			
+			"minecraft:wolf_swimming": {
+				"minecraft:underwater_movement": {
+					"value": 0.15
+				},
+				"minecraft:environment_sensor": [
+					{
+						"filters": {
+							"all_of": [
+								{
+									"test": "on_ground",
+									"operator": "==",
+									"value": true
+								},
+								{
+									"test": "in_water",
+									"operator": "!=",
+									"value": true
+								}
+							]
+						},
+						"event": "minecraft:enable_walking"
+					}
+				],
+				"minecraft:navigation.generic": { // Allows the mob to go through water
+					"is_amphibious": true,
+					"can_float": false,
+					"can_swim": true,
+					"can_walk": true,
+					"can_breach": true,
+					"can_sink":	true,
+					"avoid_damage_blocks": true,
+					"can_path_over_water": true
+				},
+				"minecraft:behavior.swim_idle": {
+					"priority": 7
+				},
+				"minecraft:behavior.random_swim": { // Randomly selects points to go to, even in water
+					"priority": 8,
+					"speed_multiplier": 1.0,
+					"xz_dist": 16,
+					"y_dist": 4,
+					"interval": 2.0
+				},
+				"minecraft:behavior.swim_wander": {
+					"priority": 9,
+					"speed_multiplier": 1.0,
+					"interval": 10,
+					"look_ahead": 2.0
+				}
+			},
+			
+			"minecraft:wolf_not_swimming": {
+				"minecraft:navigation.generic": {
+					"can_float": true,
+					"can_swim": false,
+					"can_walk": true,
+					"can_breach": true,
+					"can_sink":	true,
+					"avoid_damage_blocks": true,
+					"can_path_over_water": false
+				},
+				
+				"minecraft:behavior.float": {
+					"priority": 0
+				},
+				
+				"minecraft:behavior.random_stroll": {
+					"priority": 8,
+					"speed_multiplier": 1.0
+				},
+				"minecraft:behavior.leap_at_target": {
+					"priority": 4,
+					"target_dist": 0.4
+				}
+			},
+			
+			"minecraft:wolf_giant": {
+				"minecraft:sittable": {
+					"sit_event": {
+						"event": "minecraft:on_sit",
+						"target": "self"
+					},
+					"stand_event": {
+						"event": "minecraft:on_stand_giant",
+						"target": "self"
+					}
+				},
+				"minecraft:collision_box": {
+						"width": 0.4,
+						"height": 1.2
+				},
+				"minecraft:scale": {
+					"value":1.5
+				},
+				"minecraft:health": {
+					"value": 30,
+					"max": 30
+				},
+				"minecraft:attack": {
+					"damage": 7
+				}
+			},
+			
+			"minecraft:wolf_normal_size": {
+				"minecraft:sittable": {
+					"sit_event": {
+						"event": "minecraft:on_sit",
+						"target": "self"
+					},
+					"stand_event": {
+						"event": "minecraft:on_stand",
+						"target": "self"
+					}
+				},
+				"minecraft:attack": {
+					"damage": 4
+				}
+			},
+			
+			"minecraft:wolf_mini": {
+				"minecraft:sittable": {
+					"sit_event": {
+						"event": "minecraft:on_sit",
+						"target": "self"
+					},
+					"stand_event": {
+						"event": "minecraft:on_stand",
+						"target": "self"
+					}
+				},
+				"minecraft:collision_box": {
+					"width": 0.6,
+					"height": 0.4
+				},
+				"minecraft:loot": {
+					"table": "loot_tables/entities/wolf.json"
+				},
+				"minecraft:scale": {
+					"value":0.7
+				},
+				"minecraft:movement": {
+					"value": 0.55
+				},
+				"minecraft:attack": {
+					"damage": 2
+				}
+			},
+		
+			"minecraft:wolf_rideable": {
+				"minecraft:rideable": {
+					"priority": 0,
+					"seat_count": 1,
+					"crouching_skip_interact": true,
+					"family_types": [ "player" ],
+					"interact_text": "action.interact.mount",
+					"seats": {
+						"position": [-0.05, 0.7, -0.3]
+					}
+				}
+			},
+			
+			"minecraft:wolf_not_sitting": {
+				"minecraft:behavior.lay_down": {
+					"priority": 7,
+					"interval": 1500,
+					"random_stop_interval": 1500
+				}
+			},
+			
+			"minecraft:wolf_sitting": {
+				//Just a flag, can't actually fly...
+				"minecraft:flying_speed": {
+				},
+				"minecraft:behavior.lay_down": {
+				  "priority": 1,
+				  "interval": 1500,
+				  "random_stop_interval": 1500
+				}
+			},
+			
+			"minecraft:wolf_fallproof": {
+				"minecraft:fall_damage": {
+					"value": 0.0
+				},
+				"minecraft:input_ground_controlled": {
+					"priority": 3
+				},
+				"minecraft:can_power_jump": {
+				},
+				"minecraft:horse.jump_strength": {
+					"value": {
+						"range_min": 1.2, 
+						"range_max": 1.4
+					}
+				},
+				"minecraft:behavior.player_ride_tamed": {
+					"priority": 3
+				}
+			},
+			
+			"minecraft:wolf_not_fallproof": {
+				"minecraft:input_ground_controlled": {
+					"priority": 3
+				},
+				"minecraft:can_power_jump": {
+				},
+				"minecraft:horse.jump_strength": {
+					"value": {
+						"range_min": 0.4, 
+						"range_max": 0.7
+					}
+				},
+				"minecraft:behavior.player_ride_tamed": {
+					"priority": 3
+				}
+			},
+			
+			"minecraft:wolf_reset": {
+				"minecraft:transformation": {
+					"into": "minecraft:wolf",
+					"keep_owner": false
+				}
+			}
+			
+		},
+	
+		"components": {
+			"minecraft:nameable": {
+			},
+			"minecraft:type_family": {
+				"family": [ "wolf" ]
+			},
+			"minecraft:breathable": {
+				"totalSupply": 15,
+				"suffocateTime": 0
+			},
+			"minecraft:collision_box": {
+				"width": 0.6,
+				"height": 0.8
+			},
+			"minecraft:health": {
+				"value": 8,
+				"max": 8
+			},
+			"minecraft:movement": {
+				"value": 0.3
+			},
+			"minecraft:movement.generic": {
+			},
+			"minecraft:jump.static": {
+			},
+			"minecraft:can_climb": {
+			},
+			"minecraft:attack": {
+				"damage": 3
+			},
+			"minecraft:behavior.melee_attack": {
+				"priority": 5,
+				"target_dist": 1.2,
+				"track_target": true,
+				"reach_multiplier": 1.0
+			},
+			"minecraft:healable": {
+				"items": [
+					{
+						"item": "porkchop",
+						"heal_amount": 3
+					},
+					{
+						"item": "cooked_porkchop",
+						"heal_amount": 8
+					},
+					{
+						"item": "fish",
+						"heal_amount": 2
+					},
+					{
+						"item": "salmon",
+						"heal_amount": 2
+					},
+					{
+						"item": "clownfish",
+						"heal_amount": 1
+					},
+					{
+						"item": "pufferfish",
+						"heal_amount": 1
+					},
+					{
+						"item": "cooked_fish",
+						"heal_amount": 5
+					},
+					{
+						"item": "cooked_salmon",
+						"heal_amount": 6
+					},
+					{
+						"item": "beef",
+						"heal_amount": 3
+					},
+					{
+						"item": "cooked_beef",
+						"heal_amount": 8
+					},
+					{
+						"item": "chicken",
+						"heal_amount": 2
+					},
+					{
+						"item": "cooked_chicken",
+						"heal_amount": 6
+					},
+					{
+						"item": "muttonRaw",
+						"heal_amount": 2
+					},
+					{
+						"item": "muttonCooked",
+						"heal_amount": 6
+					},
+					{
+						"item": "rotten_flesh",
+						"heal_amount": 4
+					},
+					{
+						"item": "rabbit",
+						"heal_amount": 3
+					},
+					{
+						"item": "cooked_rabbit",
+						"heal_amount": 5
+					},
+					{
+						"item": "rabbit_stew",
+						"heal_amount": 10
+					},
+					{
+						"item": "ljw:wolf_treat",
+						"heal_amount": 5
+					}
+				]
+			},
+			"minecraft:behavior.mount_pathing": {
+				"priority": 1,
+				"speed_multiplier": 1.25,
+				"target_dist": 0,
+				"track_target": true
+			},
+			"minecraft:behavior.stay_while_sitting": {
+				"priority": 2
+			},
+			"minecraft:behavior.beg": {
+				"priority": 9,
+				"look_distance": 8,
+				"look_time": [ 2, 4 ],
+				"items": [ "bone", "porkchop", "cooked_porkchop", "chicken", "cooked_chicken", 
+						   "beef", "cooked_beef", "rotten_flesh", "muttonraw", "muttoncooked", "rabbit", "cooked_rabbit",
+						   "ljw:wolf_treat"]
+			},
+			"minecraft:behavior.hurt_by_target": {
+				"priority": 3
+			},
+			"minecraft:physics": {
+			}
+		},
+
+		"events": {
+			"minecraft:entity_spawned": {
+				"randomize": [
+					{
+						"weight": 9,
+						"remove": {
+						},
+						"add": {
+							"component_groups": [
+								"minecraft:wolf_adult",
+								"minecraft:wolf_wild",
+								"minecraft:wolf_not_swimming"
+							]
+						}
+					},
+					{
+						"weight": 1,
+						"remove": {
+						},
+						"add": {
+							"component_groups": [
+								"minecraft:wolf_baby",
+								"minecraft:wolf_wild",
+								"minecraft:wolf_not_swimming"
+							]
+
+						}
+					}
+				]
+			},
+
+			"minecraft:entity_born": {
+				"remove": {
+				},
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_baby",
+						"minecraft:wolf_tame",
+						"minecraft:wolf_normal_size",
+						"minecraft:wolf_not_swimming",
+						"minecraft:wolf_calm_tamed",
+						"minecraft:wolf_not_fallproof",
+						"minecraft:wolf_following",
+						"minecraft:wolf_not_sitting"
+					]
+				}
+			},
+			
+			"minecraft:ageable_grow_up": {
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_baby"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_adult"
+					]
+				}
+			},
+
+			"minecraft:ageable_set_baby": {
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_adult"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_baby"
+					]
+				}
+			},
+
+			"minecraft:on_tame": {
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_wild"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_calm_tamed",
+						"minecraft:wolf_tame",
+						"minecraft:wolf_normal_size",
+						"minecraft:wolf_not_fallproof",
+						"minecraft:wolf_following",
+						"minecraft:wolf_not_sitting"
+					]
+				}
+			},
+			
+			"minecraft:start_following": {
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_following"
+				  ]
+				}
+			},
+			  
+			"minecraft:stop_following": {
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_following"
+				  ]
+				}
+			},
+		
+			"minecraft:become_angry": {
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_wild"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_angry"
+					]
+				}
+			},
+		
+			"minecraft:on_calm": {
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_angry"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_wild"
+					]
+				}
+			},
+			
+			"minecraft:become_angry_tamed": {
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_calm_tamed"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_angry_tamed"
+					]
+				}
+			},
+		
+			"minecraft:on_calm_tamed": {
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_angry_tamed"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_calm_tamed"
+					]
+				}
+			},
+
+			"minecraft:on_leash": {
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_leashed"
+					]
+				}
+			},
+		
+			"minecraft:on_unleash": {
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_leashed"
+					]
+				}
+			},
+			
+			"minecraft:reset_abilities": {
+				"remove": {
+				},
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_reset"
+					]
+				}
+			},
+			
+			"minecraft:entity_transformed": {
+				"sequence": [
+					// Transform baby wolf to baby wolf
+					{
+						"filters": { "test": "has_component", "subject": "other", "value": "minecraft:is_baby" },
+						"add": {
+							"component_groups": [
+								"minecraft:wolf_baby"
+							]
+						}
+					},
+					// Transform adult wolf to adult wolf
+					{
+						"filters": {  "test": "has_component",  "subject": "other", "operator": "!=", "value": "minecraft:is_baby" },
+						"add": {
+							"component_groups": [
+								"minecraft:wolf_adult"
+							]
+						}
+					},
+					{
+						"add": {
+							"component_groups": [
+								"minecraft:wolf_wild",
+								"minecraft:wolf_not_swimming"
+							]
+						}
+					}
+				]
+			},
+			
+			"minecraft:on_giant": {
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_baby",
+						"minecraft:wolf_adult",
+						"minecraft:wolf_normal_size"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_giant",
+						"minecraft:wolf_rideable"
+					]
+				}
+			},
+			
+			"minecraft:on_giant_while_sitting": {
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_baby",
+						"minecraft:wolf_adult",
+						"minecraft:wolf_normal_size"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_giant"
+					]
+				}
+			},
+		
+			"minecraft:on_restore_size": {
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_giant",
+						"minecraft:wolf_mini",
+						"minecraft:wolf_rideable"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_adult",
+						"minecraft:wolf_normal_size"
+					]
+				}
+			},
+		
+			"minecraft:on_shrink": {
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_adult",
+						"minecraft:wolf_baby",
+						"minecraft:wolf_normal_size"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_mini"
+					]
+				}
+			},
+		
+			"minecraft:make_fallproof": {
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_not_fallproof"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_fallproof"
+					]
+				}
+			},
+	 
+			"minecraft:make_waterbreathing": {
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_waterbreathing"
+					]
+				}
+			},
+	 
+			"minecraft:make_teleporting": {
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_teleporting"
+					]
+				}
+			},
+	 
+			"minecraft:ageable_stop_teleporting": {
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_teleporting"
+					]
+				}
+			},
+	 
+			"minecraft:on_sit": {
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_sitting"
+					]
+				},
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_teleporting",
+						"minecraft:wolf_rideable",
+						"minecraft:wolf_not_sitting"
+					]
+				}
+			},
+	
+			"minecraft:on_stand_giant": {
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_rideable",
+						"minecraft:wolf_not_sitting"
+					]
+				},
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_sitting"
+					]
+				}
+			},
+	
+			"minecraft:on_stand": {
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_not_sitting"
+					]
+				},
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_sitting"
+					]
+				}
+			},
+			
+			"minecraft:enable_swimming": {
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_not_swimming"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_swimming"
+					]
+				}
+			},
+			
+			"minecraft:enable_walking": {
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_swimming"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_not_swimming"
+					]
+				}
+			},
+			
+			"minecraft:upgrade_wolf_wild": {
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_not_swimming"
+					]
+				}
+			},
+			
+			"minecraft:upgrade_wolf_tamed": {
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_not_swimming",
+						"minecraft:wolf_calm_tamed",
+						"minecraft:wolf_normal_size",
+						"minecraft:wolf_not_fallproof",
+						"minecraft:wolf_following"
+					]
+				}
+			},
+	
+			"minecraft:start_pet_the_dog": {
+				"add": {
+					"component_groups": [
+						"minecraft:wolf_pet"
+					]
+				}
+			},
+	
+			"minecraft:end_pet_the_dog": {
+				"remove": {
+					"component_groups": [
+						"minecraft:wolf_pet"
+					]
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,13 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "ljw:pet_the_dog"
+    },
+    
+    "components": {
+      "minecraft:hand_equipped": false,
+      "minecraft:stacked_by_data": false
+    }
+  }
+}

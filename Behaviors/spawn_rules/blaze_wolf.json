@@ -1,0 +1,29 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:spawn_rules": {
+    "description": {
+      "identifier": "ljw:blaze_wolf",
+      "population_control": "monster"
+    },
+    "conditions": [
+      {
+        "minecraft:spawns_underground": {
+        },
+        "minecraft:weight": {
+          "default": 32
+        },
+		"minecraft:difficulty_filter": {
+          "min": "peaceful",
+          "max": "hard"
+        },
+        "minecraft:herd": {
+          "min_size": 1,
+          "max_size": 3
+        },
+        "minecraft:biome_filter": { 
+          "test": "has_biome_tag", "operator":"==", "value": "nether"
+        }
+      }
+    ]
+  }
+}

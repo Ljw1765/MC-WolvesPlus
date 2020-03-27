@@ -1,0 +1,77 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:spawn_rules": {
+    "description": {
+      "identifier": "ljw:wolf",
+      "population_control": "animal"
+    },
+    "conditions": [
+      {
+		//Dex
+        "minecraft:spawns_on_surface": {
+		},
+        "minecraft:weight": {
+          "default": 32
+        },
+        "minecraft:herd": {
+          "min_size": 1,
+          "max_size": 3
+        },
+        "minecraft:biome_filter": {
+			"all_of": [
+				{
+					"test": "has_biome_tag", "value": "mega"
+				},
+				{
+					"test": "has_biome_tag", "value": "taiga"
+				}
+			]
+        }
+      },
+	  {
+		//Orange dog
+        "minecraft:spawns_on_surface": {
+		},
+        "minecraft:weight": {
+          "default": 32
+        },
+        "minecraft:herd": {
+          "min_size": 1,
+          "max_size": 3
+        },
+        "minecraft:biome_filter": {
+			"all_of": [
+				{
+					"test": "has_biome_tag", "value": "extreme_hills"
+				},
+				{
+					"test": "has_biome_tag", "value": "forest"
+				},
+				{
+					"test": "has_biome_tag", "value": "mountain"
+				}
+			]
+        }
+      },
+	  {
+		//White / Husky dogs
+        "minecraft:spawns_on_surface": {
+		},
+        "minecraft:weight": {
+          "default": 32
+        },
+        "minecraft:herd": {
+          "min_size": 1,
+          "max_size": 3
+        },
+        "minecraft:biome_filter": {
+			"all_of": [
+				{
+					"test": "has_biome_tag", "value": "frozen"
+				}
+			]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "resource_pack_name": "vanilla",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "wolf_treat": {
+      "textures": "textures/items/wolf_treat"
+    },
+	"wolf_treat_fallproof": {
+      "textures": "textures/items/wolf_treat_fallproof"
+    },
+	"wolf_treat_giant": {
+      "textures": "textures/items/wolf_treat_giant"
+    },
+    "wolf_treat_mini": {
+      "textures": "textures/items/wolf_treat_mini"
+    },
+    "wolf_treat_resetsize": {
+      "textures": "textures/items/wolf_treat_resetsize"
+    },
+    "wolf_treat_teleporting": {
+      "textures": "textures/items/wolf_treat_teleporting"
+    },
+    "wolf_treat_strange": {
+      "textures": "textures/items/wolf_treat_strange"
+    },
+    "wolf_treat_waterbreathing": {
+      "textures": "textures/items/wolf_treat_waterbreathing"
+    },
+    "pet_the_dog": {
+      "textures": "textures/items/pet_the_dog"
+    }
+  }
+}

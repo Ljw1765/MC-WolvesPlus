@@ -1,0 +1,245 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.ljw_wolf.general": {
+			"states": {
+				"default": {
+					"animations": [
+						"standing",
+						"tail",
+						"look_at_target"
+					],
+					"transitions": [
+						{ "sitting": "query.is_sitting && !query.has_target" },
+						{ "laying_down": "query.is_laying_down && !query.has_target" }
+					]
+				},
+			
+				"sitting": {
+					"animations": [
+						"sit",
+						"tail",
+						"look_at_target"
+					],
+					"transitions": [
+						{ "default": "!query.is_sitting" },
+						{ "laying_down": "query.is_laying_down && !query.is_interested" }
+					],
+					"blend_transition": 0.2
+				},
+			
+				"laying_down": {
+					"animations": [
+						"lay_down",
+						"look_at_target"
+					],
+					"transitions": [
+						{ "default": "!query.is_sitting && !query.is_laying_down" },
+						{ "sitting": "query.is_sitting && (!query.is_laying_down || query.is_interested)" }
+					],
+					"blend_transition": 0.2
+				}
+			}
+		},
+		
+		"controller.animation.ljw_wolf.walk": {
+			"states": {
+				"default": {
+					"animations": [
+						{ "walking": "query.modified_move_speed" }
+					]
+				}
+			}
+		},
+		
+		"controller.animation.ljw_wolf.beg": {
+			"states": {
+				"default": {
+					"transitions": [
+						{ "beg": "query.is_interested" }
+					],
+					"blend_transition": 0.2
+				},
+				
+				"beg": {
+					"animations": [
+						"beg"
+					],
+					"transitions": [
+						{ "default": "!query.is_interested" }
+					],
+					"blend_transition": 0.2
+				}
+			}
+		},
+		
+		"controller.animation.ljw_wolf.shake": {
+			"states": {
+				"default": {
+					"transitions": [
+						{ "in_water": "query.is_in_water_or_rain" }
+					]
+				},
+				"in_water": {
+					"transitions": [
+						{ "shake": "!query.is_in_water_or_rain" }
+					],
+					"blend_transition": 0.2
+				},
+				"shake": {
+					"animations": [
+						"shaking"
+					],
+					"particle_effects": [
+						{
+							"effect": "water_shake",
+							"locator": "water_shake"
+						}
+					],
+					"transitions": [
+						{ "default": "query.all_animations_finished" },
+						{ "in_water": "query.is_in_water_or_rain" }
+					],
+					"sound_effects": [
+						{ 
+							"effect": "shake" 
+						}
+					],
+					"blend_transition": 0.2
+				}
+			}
+		},
+		
+		"controller.animation.ljw_wolf_multiskin.shake": {
+			"states": {
+				"default": {
+					"transitions": [
+						{ "in_water": "query.is_in_water_or_rain" }
+					]
+				},
+				"in_water": {
+					"transitions": [
+						{ "shake": "!query.is_in_water_or_rain && query.variant != 1" },
+						{ "shake_sprinkles": "!query.is_in_water_or_rain && query.variant == 1" } //Special shake particles for choco-sprinkle wolf
+					],
+					"blend_transition": 0.2
+				},
+				"shake": {
+					"animations": [
+						"shaking"
+					],
+					"particle_effects": [
+						{
+							"effect": "water_shake",
+							"locator": "water_shake"
+						}
+					],
+					"transitions": [
+						{ "default": "query.all_animations_finished" },
+						{ "in_water": "query.is_in_water_or_rain" }
+					],
+					"sound_effects": [
+						{ 
+							"effect": "shake" 
+						}
+					],
+					"blend_transition": 0.2
+				},
+				"shake_sprinkles": {
+					"animations": [
+						"shaking"
+					],
+					"particle_effects": [
+						{
+							"effect": "sprinkle_shake",
+							"locator": "water_shake"
+						}
+					],
+					"transitions": [
+						{ "default": "query.all_animations_finished" },
+						{ "in_water": "query.is_in_water_or_rain" }
+					],
+					"sound_effects": [
+						{ 
+							"effect": "shake" 
+						}
+					],
+					"blend_transition": 0.2
+				}
+			}
+		},
+		
+		"controller.animation.ljw_wolf.tail_wag": {
+			"states": {
+				"default": {
+					"transitions": [
+						{ "wagging_baby": "query.is_saddled && query.is_baby" },
+						{ "wagging": "query.is_saddled && !query.is_baby" }
+					],
+					"blend_transition": 0.2
+				},
+				"wagging": {
+					"animations": [
+						"tail_wag"
+					],
+					"transitions": [
+						{ "default": "!query.is_saddled" }
+					],
+					"sound_effects": [
+						{ 
+							"effect": "ambient" 
+						}
+					],
+					"blend_transition": 0.2
+				},
+				"wagging_baby": {
+					"animations": [
+						"tail_wag"
+					],
+					"transitions": [
+						{ "default": "!query.is_saddled" }
+					],
+					"blend_transition": 0.2
+				}
+			}
+		},
+		
+		"controller.animation.ljw_wolf.tail_flame": {
+			"states": {
+				"default": {
+					"transitions": [
+						{ "tamed": "query.is_tamed && !query.is_in_water_or_rain" },
+						{ "wild": "!query.is_tamed && !query.is_in_water_or_rain" }
+					],
+					"sound_effects": [
+						{ 
+							"effect": "flame_off" 
+						}
+					]
+				},
+				"tamed": {
+					"particle_effects": [
+						{
+							"effect": "flame", 
+							"locator": "tail_tip"
+						}
+					],
+					"transitions": [
+						{ "default": "query.is_in_water_or_rain" }
+					]
+				},
+				"wild": {
+					"particle_effects": [
+						{
+							"effect": "flame", 
+							"locator": "tail_tip_b"
+						}
+					],
+					"transitions": [
+						{ "default": "query.is_in_water_or_rain" }
+					]
+				}
+			}
+		}
+	}
+}

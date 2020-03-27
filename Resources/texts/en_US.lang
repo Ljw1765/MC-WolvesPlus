@@ -1,0 +1,26 @@
+item.spawn_egg.entity.ljw:snow_wolf.name=Spawn Snow Wolf
+item.spawn_egg.entity.ljw:blaze_wolf.name=Spawn Blaze Wolf
+item.spawn_egg.entity.ljw:end_wolf.name=Spawn End Wolf
+item.spawn_egg.entity.ljw:wolf.name=Spawn Wolves+ Wolf
+
+entity.ljw:snow_wolf.name=Snow Wolf
+entity.ljw:blaze_wolf.name=Blaze Wolf
+entity.ljw:end_wolf.name=End Wolf
+entity.ljw:wolf.name=Wolf
+
+item.ljw:wolf_treat.name=Wolf Treat
+item.ljw:wolf_treat_strange.name=Strange Wolf Treat
+item.ljw:wolf_treat_fallproof.name=Gelatinous Wolf Treat
+item.ljw:wolf_treat_giant.name=Maximizing Wolf Treat
+item.ljw:wolf_treat_mini.name=Minimizing Wolf Treat
+item.ljw:wolf_treat_resetsize.name=Equalizing Wolf Treat
+item.ljw:wolf_treat_teleporting.name=Phasing Wolf Treat
+item.ljw:wolf_treat_waterbreathing.name=Wolf Treat Aquatic
+item.ljw:pet_the_dog.name=Pet the Dog
+
+action.hint.exit.wolf=Tap sneak to dismount
+action.hint.exit.ljw:snow_wolf=Tap sneak to dismount
+action.hint.exit.ljw:blaze_wolf=Tap sneak to dismount
+action.hint.exit.ljw:end_wolf=Tap sneak to dismount
+action.hint.exit.ljw:wolf=Tap sneak to dismount
+action.hint.exit.unknown=Tap sneak to dismount

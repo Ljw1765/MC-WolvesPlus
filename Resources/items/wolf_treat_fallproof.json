@@ -1,0 +1,14 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "ljw:wolf_treat_fallproof",
+      "category": "Equipment"
+    },
+
+    "components": {
+      "minecraft:icon": "wolf_treat_fallproof",
+      "minecraft:render_offsets": "flesh"
+    }
+  }
+}

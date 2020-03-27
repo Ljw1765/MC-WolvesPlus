@@ -1,0 +1,62 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "ljw:end_wolf",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "collar": "ljw_wolf_collar",
+        "default": "ljw_wolf_accent"
+      },
+      "textures": {
+        "default": "textures/entity/ljw_wolf/end_wolf/default",
+		"tame": "textures/entity/ljw_wolf/end_wolf/tamed"
+      },
+      "geometry": {
+        "default": "geometry.ljw_wolf"
+      },
+      "particle_effects": {
+		"water_shake": "ljw:wolf_water_shake"
+	  },
+      "animations": {
+		"baby_transform": "animation.ljw_wolf.baby_transform",
+		"tail_wag": "animation.ljw_wolf.tail_wag",
+		"look_at_target": "animation.common.look_at_target",
+		"tail": "animation.ljw_wolf.tail",
+		"standing": "animation.ljw_wolf.stand",
+		"sit": "animation.ljw_wolf.sit",
+		"lay_down": "animation.ljw_wolf.lay_down",
+		"walking": "animation.quadruped.walk",
+		"shaking": "animation.ljw_wolf.shake",
+		"beg": "animation.ljw_wolf.beg",
+		
+        "cont_general": "controller.animation.ljw_wolf.general",
+		"cont_walk": "controller.animation.ljw_wolf.walk",
+		"cont_shake": "controller.animation.ljw_wolf.shake",
+		"cont_beg": "controller.animation.ljw_wolf.beg",
+		"cont_tail_wag": "controller.animation.ljw_wolf.tail_wag"
+      },
+      "scripts": {
+        "animate": [
+			{"baby_transform": "query.is_baby" },
+			
+			"cont_general",
+			"cont_walk",
+			"cont_shake",
+			"cont_beg",
+			"cont_tail_wag"
+		]
+      },
+      "render_controllers": [ "controller.render.ljw_wolf" ],
+	  "sound_effects": {
+			"ambient": "mob.wolf.bark",
+			"shake": "mob.wolf.shake",
+			"growl": "mob.wolf.growl"
+	  },
+      "spawn_egg": {
+         "base_color": "#171717",
+        "overlay_color": "#e079fa"
+      }
+    }
+  }
+}

@@ -1,0 +1,150 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.ljw_wolf.stand": {
+			"loop": true,
+			"animation_length": 0.6,
+			"bones": {
+				"leg2": {
+					"position": [0, 0, 1]
+				},
+				"leg3": {
+					"position": [0, 0, 1]
+				},
+				"tail": {
+					"rotation": [0, 0, 0]
+				}
+			}
+		},
+		"animation.ljw_wolf.baby_transform": {
+			"loop": true,
+			"bones": {
+				"head": {
+					"position": [0, 1, -1],
+					"scale": [1.6, 1.6, 1.6]
+				}
+			}
+		},
+		"animation.ljw_wolf.sit": {
+			"loop": true,
+			"animation_length": 0.2,
+			"bones": {
+				"body": {
+					"rotation": [-40, 0, 0],
+					"position": [0, -4, -1]
+				},
+				"upperBody": {
+					"rotation": [-25, 0, 0],
+					"position": [0, -4, -1]
+				},
+				"leg0": {
+					"rotation": [-90, 0, 0],
+					"position": [0, -7, -4]
+				},
+				"leg1": {
+					"rotation": [-90, 0, 0],
+					"position": [0, -7, -4]
+				},
+				"leg2": {
+					"rotation": [-15, 0, 0]
+				},
+				"leg3": {
+					"rotation": [-15, 0, 0]
+				},
+				"tail": {
+					"position": [0, -6.2, -1]
+				}
+			}
+		},
+		"animation.ljw_wolf.beg": {
+			"loop": true,
+			"bones": {
+				"head": {
+					"rotation": [0, 0, "Math.clamp(query.anim_time * 100, 0, 25)"]
+				}
+			}
+		},
+		"animation.ljw_wolf.head_rotation": {
+			"loop": true,
+			"bones": {
+				"head": {
+					"rotation": [0, 0, "(query.is_interested ? (query.head_roll_angle * 57.3) : 0) + (query.is_shaking_wetness ? variable.head_rot_z : 0) - this"]
+				}
+			}
+		},
+		"animation.ljw_wolf.tail": {
+			"loop": true,
+			"bones": {
+				"tail": {
+					"rotation": ["query.is_tamed ? (query.is_angry ? 65 : 57.3) : (query.is_sitting ? 35 : 0)", "query.modified_move_speed ? (Math.cos(query.modified_distance_moved * 38.17) * query.modified_move_speed * 80.22) : 0", 0]
+				}
+			}
+		},
+		
+		"animation.ljw_wolf.lay_down": {
+			"loop": true,
+			"bones": {
+				"head": {
+					"rotation": ["query.is_eating ? (45 + 5 * math.sin(query.life_time * 750)) : 0", 0, 0],
+					"position": [0, -6, 1]
+				},
+				"body": {
+					"rotation": [0, 0, 5],
+					"position": [2, -6, 0]
+				},
+				"upperBody": {
+					"rotation": [0, 25, 5],
+					"position": [3, -6, 0]
+				},
+				"leg0": {
+					"rotation": [-80, 50, 0],
+					"position": [1, -6, 0]
+				},
+				"leg1": {
+					"rotation": [-90, 35, 0],
+					"position": [1, -7, 0]
+				},
+				"leg2": {
+					"rotation": [-80, 25, 0],
+					"position": [1, -7, 3]
+				},
+				"leg3": {
+					"rotation": [-90, 25, 0],
+					"position": [1.5, -8, 1]
+				},
+				"tail": {
+					"rotation": [15, -35, 0],
+					"position": [2, -7, 0]
+				}
+			}
+		},
+		
+		"animation.ljw_wolf.shake": {
+			//Shakey, need to adjust
+			"animation_length": 2,
+			"bones": {
+				"head": {
+					"rotation": [0, 0, "(Math.sin(Math.clamp(0.05 * query.frame_alpha + (query.anim_time * 1) / 1.8, 0, 1) * 180) * Math.sin(Math.clamp(0.05 * query.frame_alpha + (query.anim_time * 1) / 1.8, 0, 1) * 1980) * 27) - (Math.sin(Math.clamp((0.05 * query.frame_alpha + (query.anim_time * 1) - 0.16) / 1.8, 0, 1) * 180) * Math.sin(Math.clamp((0.05 * query.frame_alpha + (query.anim_time * 1) - 0.16) / 1.8, 0, 1) * 1980) * 27)"]
+				},
+				"body": {
+					"rotation": [0, 0, "Math.sin(Math.clamp((0.05 * query.frame_alpha + (query.anim_time * 1) - 0.16) / 1.8, 0, 1) * 180) * Math.sin(Math.clamp((0.05 * query.frame_alpha + (query.anim_time * 1) - 0.16) / 1.8, 0, 1) * 1980) * 27"]
+				},
+				"upperBody": {
+					"rotation": [0, 0, "(Math.sin(Math.clamp((0.05 * query.frame_alpha + (query.anim_time * 1) - 0.08) / 1.8, 0, 1) * 180) * Math.sin(Math.clamp((0.05 * query.frame_alpha + (query.anim_time * 1) - 0.08) / 1.8, 0, 1) * 1980) * 27) - (Math.sin(Math.clamp((0.05 * query.frame_alpha + (query.anim_time * 1) - 0.16) / 1.8, 0, 1) * 180) * Math.sin(Math.clamp((0.05 * query.frame_alpha + (query.anim_time * 1) - 0.16) / 1.8, 0, 1) * 1980) * 27)"]
+				},
+				"tail": {
+					"rotation": [0, 0, "(Math.sin(Math.clamp((0.05 * query.frame_alpha + (query.anim_time * 1) - 0.2) / 1.8, 0, 1) * 180) * Math.sin(Math.clamp((0.05 * query.frame_alpha + (query.anim_time * 1) - 0.2) / 1.8, 0, 1) * 1980) * 27) - (Math.sin(Math.clamp((0.05 * query.frame_alpha + (query.anim_time * 1) - 0.16) / 1.8, 0, 1) * 180) * Math.sin(Math.clamp((0.05 * query.frame_alpha + (query.anim_time * 1) - 0.16) / 1.8, 0, 1) * 1980) * 27)"]
+				}
+			}
+		},
+		
+		"animation.ljw_wolf.tail_wag": {
+			"loop": true,
+			"bones": {
+				"tail": {
+					"rotation": [0, "30 * Math.cos(query.anim_time * 720)", 0]
+				}
+			}
+		}
+	}
+}

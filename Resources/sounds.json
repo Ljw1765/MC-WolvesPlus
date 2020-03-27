@@ -1,0 +1,90 @@
+{
+  "entity_sounds": {
+    "entities": {
+      "ljw:snow_wolf": {
+        "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.ljw_wolf.bark",
+          "hurt": "mob.ljw_wolf.hurt",
+          "death": "mob.ljw_wolf.death",
+          "step": {
+            "sound": "mob.ljw_wolf.step",
+            "volume": 0.15,
+            "pitch": 1.0
+          },
+          "shake": {
+            "sound": "mob.ljw_wolf.shake",
+            "pitch": [ 0.8, 1.2 ]
+          },
+          "growl": "mob.ljw_wolf.growl",
+          "whine": "mob.ljw_wolf.whine",
+          "pant": "mob.ljw_wolf.panting"
+        }
+      },
+	  "ljw:blaze_wolf": {
+        "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.ljw_wolf.bark",
+          "hurt": "mob.ljw_wolf.hurt",
+          "death": "mob.ljw_wolf.death",
+          "step": {
+            "sound": "mob.ljw_wolf.step",
+            "volume": 0.15,
+            "pitch": 1.0
+          },
+          "shake": {
+            "sound": "mob.ljw_wolf.shake",
+            "pitch": [ 0.8, 1.2 ]
+          },
+          "growl": "mob.ljw_wolf.growl",
+          "whine": "mob.ljw_wolf.whine",
+          "pant": "mob.ljw_wolf.panting"
+        }
+      },
+	  "ljw:end_wolf": {
+        "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.ljw_wolf.bark",
+          "hurt": "mob.ljw_wolf.hurt",
+          "death": "mob.ljw_wolf.death",
+          "step": {
+            "sound": "mob.ljw_wolf.step",
+            "volume": 0.15,
+            "pitch": 1.0
+          },
+          "shake": {
+            "sound": "mob.ljw_wolf.shake",
+            "pitch": [ 0.8, 1.2 ]
+          },
+          "growl": "mob.ljw_wolf.growl",
+          "whine": "mob.ljw_wolf.whine",
+          "pant": "mob.ljw_wolf.panting"
+        }
+      },
+	  "ljw:wolf": {
+        "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.ljw_wolf.bark",
+          "hurt": "mob.ljw_wolf.hurt",
+          "death": "mob.ljw_wolf.death",
+          "step": {
+            "sound": "mob.ljw_wolf.step",
+            "volume": 0.15,
+            "pitch": 1.0
+          },
+          "shake": {
+            "sound": "mob.ljw_wolf.shake",
+            "pitch": [ 0.8, 1.2 ]
+          },
+          "growl": "mob.ljw_wolf.growl",
+          "whine": "mob.ljw_wolf.whine",
+          "pant": "mob.ljw_wolf.panting"
+        }
+      }
+    }
+  }
+}

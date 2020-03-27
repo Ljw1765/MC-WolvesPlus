@@ -1,0 +1,22 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+    "identifier": "ljw:wolf_treat_giant"
+    },
+
+    
+    "tags": [ "crafting_table" ],
+    "ingredients": [
+      {
+        "item": "ljw:wolf_treat_strange"
+      },
+      {
+        "item": "minecraft:red_mushroom"
+      }
+    ],
+    "result": {
+      "item": "ljw:wolf_treat_giant"
+    }
+  }
+}

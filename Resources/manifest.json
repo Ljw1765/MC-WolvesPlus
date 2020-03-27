@@ -1,0 +1,24 @@
+{
+    "format_version": 1,
+    "header": {
+        "description": "Adds new variants of wolves! Created by JW §b@Ljw1765",
+        "name": "Wolves+ v1.2.0",
+		"uuid": "b09b859f-a3ac-4ec9-9cc4-e622cea02293",
+        "version": [1, 2, 0],
+        "min_engine_version": [1, 8, 1]
+    },
+    "modules": [
+        {
+            "description": "Adds new variants of wolves! Created by JW §b@Ljw1765",
+            "type": "resources",
+			"uuid": "65d25d59-ee75-4f8a-b1a7-eb4bc6d4a783",
+            "version": [1, 2, 0]
+        }
+    ],
+    "dependencies": [
+        {
+			"uuid": "7f17c333-f258-4d49-b7b4-2088e2364452",
+            "version": [1, 2, 0]
+        }
+    ]
+}

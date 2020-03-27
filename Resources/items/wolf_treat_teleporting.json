@@ -1,0 +1,14 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "ljw:wolf_treat_teleporting",
+      "category": "Equipment"
+    },
+
+    "components": {
+      "minecraft:icon": "wolf_treat_teleporting",
+      "minecraft:render_offsets": "flesh"
+    }
+  }
+}

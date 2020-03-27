@@ -1,0 +1,14 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "ljw:pet_the_dog",
+      "category": "Equipment"
+    },
+
+    "components": {
+      "minecraft:icon": "pet_the_dog",
+      "minecraft:render_offsets": "flesh"
+    }
+  }
+}

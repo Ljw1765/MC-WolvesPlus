@@ -1,0 +1,14 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "ljw:wolf_treat_mini",
+      "category": "Equipment"
+    },
+
+    "components": {
+      "minecraft:icon": "wolf_treat_mini",
+      "minecraft:render_offsets": "flesh"
+    }
+  }
+}

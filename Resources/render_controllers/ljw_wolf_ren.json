@@ -1,0 +1,20 @@
+{
+	"format_version": "1.8.0",
+	"render_controllers": {
+    "controller.render.ljw_wolf": {
+			"arrays": {
+				"textures": {
+					"Array.skins": [ "Texture.default", "Texture.tame" ]
+				}
+			},
+			"geometry": "Geometry.default",
+			"materials": [ 
+				{ "*": "Material.default" }, 
+				{ "upperBody": "Material.collar" } 
+			],
+			"textures": [ 
+				"Array.skins[query.is_tamed]"
+			]
+		}
+	}
+}

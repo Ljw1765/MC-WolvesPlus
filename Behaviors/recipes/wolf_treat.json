@@ -1,0 +1,25 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+    "identifier": "ljw:wolf_treat"
+    },
+
+    
+    "tags": [ "crafting_table" ],
+    "ingredients": [
+      {
+        "item": "minecraft:pumpkin"
+      },
+      {
+        "item": "minecraft:wheat"
+      },
+      {
+        "item": "minecraft:egg"
+      }
+    ],
+    "result": [
+      { "item": "ljw:wolf_treat", "count": 8 }
+    ]
+  }
+}

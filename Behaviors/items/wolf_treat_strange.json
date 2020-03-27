@@ -1,0 +1,14 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "ljw:wolf_treat_strange"
+    },
+    
+    "components": {
+      "minecraft:hand_equipped": false,
+      "minecraft:foil": true,
+      "minecraft:stacked_by_data": false
+    }
+  }
+}
